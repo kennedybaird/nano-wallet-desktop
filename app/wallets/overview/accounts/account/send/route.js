@@ -9,7 +9,7 @@ export default Route.extend({
   @service flashMessages: null,
 
   renderTemplate() {
-    this.render('wallets.overview.accounts.send', {
+    this.render('wallets.overview.accounts.account.send', {
       into: 'wallets.overview',
       outlet: 'sendOutlet',
     });
@@ -17,7 +17,7 @@ export default Route.extend({
 
   model() {
     const wallet = this.modelFor('wallets');
-    const source = this.modelFor('wallets.overview.accounts');
+    const source = this.modelFor('wallets.overview.account');
     return this.store.createRecord('block', {
       wallet,
       source,

@@ -7,6 +7,12 @@ export default Route.extend({
   @service intl: null,
   @service flashMessages: null,
 
+  renderTemplate() {
+    this.render('wallets/overview/accounts/account/settings', {
+      into: 'wallets',
+      outlet: 'modal',
+    });
+  },
   @action
   save() {
     const message = this.get('intl').t('accountSettingsSaved');
@@ -16,6 +22,6 @@ export default Route.extend({
 
   @action
   cancel() {
-    return this.transitionTo('wallets.overview');
+    return this.transitionTo(window.history.back());
   },
 });

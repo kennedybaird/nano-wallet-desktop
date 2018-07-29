@@ -1,16 +1,9 @@
 import Controller from '@ember/controller';
-
-import { computed } from 'ember-decorators/object';
 import { sort } from 'ember-decorators/object/computed';
+import { computed } from 'ember-decorators/object';
 
 export default Controller.extend({
-  queryParams: ['slide', 'currency'],
-  slide: 0,
-  currency: 'NANO',
-
-  hideHistory: true,
-  hideCarousel: false,
-  isExpanded: false,
+  accounts: null,
 
   @sort('model.accounts', 'sortBy') sortedAccounts: null,
 

@@ -1,9 +1,9 @@
 {{#if hideHistory}}
   {{balance-overview wallet=model currency=currency onChangeCurrency=(route-action 'changeCurrency')}}
 {{/if}}
-
-{{wallet-overview wallet=model accounts=sortedAccounts hideHistory=hideHistory createAccount=(route-action 'createAccount') currentSlide=slide onChangeSlide=(route-action 'changeSlide')}}
-
+{{#unless hideCarousel}}
+  {{wallet-overview wallet=model accounts=sortedAccounts hideHistory=hideHistory createAccount=(route-action 'createAccount') currentSlide=slide onChangeSlide=(route-action 'changeSlide')}}
+{{/unless}}
 {{liquid-outlet class="history"}}
 
 {{#send-button wallet=model accounts=sortedAccounts isExpanded=isExpanded

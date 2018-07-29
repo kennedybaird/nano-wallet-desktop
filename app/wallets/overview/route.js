@@ -13,6 +13,7 @@ export default Route.extend({
     const walletOverviewController = this.controllerFor('wallets.overview');
     setProperties(walletOverviewController, {
       hideHistory: true,
+      hideCarousel: false,
       isExpanded: false,
     });
 

@@ -7,6 +7,6 @@ export default Route.extend({
     await get(model, 'accounts');
 
     const source = get(overviewController, 'sortedAccounts.firstObject');
-    return this.transitionTo('wallets.overview.accounts.send', source);
+    return this.transitionTo('wallets.overview.accounts.account.send', source);
   },
 });

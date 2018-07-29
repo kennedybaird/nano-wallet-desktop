@@ -25,10 +25,12 @@ Router.map(function routerMap() {
 
     this.route('overview', function overviewRoute() {
       this.route('settings');
-      this.route('accounts', { path: '/:account_id' }, function accountsRoute() {
-        this.route('send');
-        this.route('history');
-        this.route('settings');
+      this.route('accounts', function accountsRoutes() {
+        this.route('account', { path: '/:account_id' }, function accountRoutes() {
+          this.route('send');
+          this.route('history');
+          this.route('settings');
+        });
       });
     });
   });

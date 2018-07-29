@@ -1,10 +1,41 @@
+{{log 'account details:' account}}
+<div class="card mb-2">
+  <div class="card-body">
+    <div class="row align-items-center">
+      <div class="col-auto">
+        {{qr-code text=account.id width=170 height=170}}
+      </div>
+      <div class="col-auto">
+        {{account-label class="flex-row w-100 align-self-center" account=account}}
+
+        {{#link-to 'wallets.overview.accounts.account.history' account bubbles=false class='settings' title=(t 'editAccountSettings')}}
+          History
+        {{/link-to}}
+        
+      </div>
+      <div class="col-auto ml-auto">
+        <p class="balance">
+          <sup>
+            <img src="{{root-url "images/logo.svg"}}" alt="{{t 'NANO'}}">
+          </sup>
+          {{format-amount account.balance}}
+          <br>
+          <sub>+{{format-amount account.pending}}</sub>
+        </p>
+        {{#link-to 'wallets.overview.accounts.account.settings' account bubbles=false class='settings' title=(t 'editAccountSettings')}}
+          Settings
+        {{/link-to}}
+      </div>
+    </div>
+  </div>
+</div>
 {{#link-to 'wallets.overview.accounts.account.history' account tagName='button' disabled=(not account.id)}}
   <div class="account-card-content">
     {{#if account.id}}
       {{#if hideHistory}}
-        {{#link-to 'wallets.overview.accounts.account.settings' account bubbles=false class='settings' title=(t 'editAccountSettings')}}
+        {{#link-to 'wallets.overview.account.settings' account bubbles=false class='settings' title=(t 'editAccountSettings')}}
           {{bs-tooltip fade=true delayShow=500 placement='top' title=(t 'editAccountSettings')}}
-          {{fa-icon 'cog' size='2' ariaLabel=(t 'editAccountSettings')}}
+          {{fa-icon 'cog' ariaLabel=(t 'editAccountSettings')}}
         {{/link-to}}
         {{qr-code text=account.id width=170 height=170}}
       {{/if}}

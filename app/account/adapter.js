@@ -17,6 +17,11 @@ export default Adapter.extend({
     return info;
   },
 
+  async findAll(store, type, wallet) {
+    const info = await this.get('rpc').accountList(wallet);
+    return info;
+  },
+
   async createRecord(store, type, snapshot) {
     const { wallet } = this.serialize(snapshot);
     const { account } = await this.get('rpc').accountCreate(wallet);
