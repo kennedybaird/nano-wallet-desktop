@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 {{#let (changeset (hash label=settings.label representative=account.representative) ChangeAccountSettingsValidations) as |model|}}
-  {{#bs-modal position='center' onHide=(action (optional onCancel)) as |modal|}}
-=======
-{{#with (changeset (hash label=settings.label representative=account.representative) ChangeAccountSettingsValidations) as |model|}}
   {{#bs-modal position='center' onHide=(action onCancel) as |modal|}}
->>>>>>> account-states
     {{#modal.header}}
       <h4 class="modal-title">
         {{t 'accountSettings'}}
