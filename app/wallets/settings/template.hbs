@@ -1,0 +1,12 @@
+<div class="w-75 mx-auto">  
+  <div class="card mb-2">
+    <div class="card-header">
+      <h4 class="modal-title">
+      {{t 'walletSettings'}}
+      </h4>
+    </div>
+    <div class="card-body">
+      {{wallet-settings wallet=model representative=model.representative onChangeRepresentative=(route-action 'changeRepresentative') onChangePassword=(route-action 'changePassword')}}
+    </div>
+  </div>
+</div>

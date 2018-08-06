@@ -34,6 +34,9 @@ data: 'data'
 syncing: 'Syncing'
 sending: 'Sending...'
 sent: 'Broadcasting send!'
+normal: 'Normal'
+hidden: 'Hidden'
+archived: 'Archived'
 progress: >
   {value, number, percent} {eta, select,
     null {(estimating...)}

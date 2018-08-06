@@ -2,7 +2,11 @@
   <div class="container send-form">
     <div class="row justify-content-md-center align-items-center h-100">
       <div class="col col-lg-6 col-sm-12">
-        {{yield}}
+        {{#if isSending}}
+          {{log 'iseSending' isSending}}
+          {{log 'accounts' sortedAccounts}}
+          {{account-send sortedAccounts=sortedAccounts block=wallet}}
+        {{/if}}
       </div>
     </div>
   </div>

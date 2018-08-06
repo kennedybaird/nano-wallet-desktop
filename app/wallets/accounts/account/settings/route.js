@@ -8,7 +8,7 @@ export default Route.extend({
   @service flashMessages: null,
 
   renderTemplate() {
-    this.render('wallets/overview/accounts/account/settings', {
+    this.render('wallets/accounts/account/settings', {
       into: 'wallets',
       outlet: 'modal',
     });

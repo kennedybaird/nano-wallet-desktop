@@ -1,0 +1,19 @@
+{{#copy-button
+  
+    tagName='div'
+    class="row mb-4"
+    buttonType=null
+    clipboardText=account
+    success=(action 'copyAddress' (concat (slice 0 9 account) '...' (slice 59 64 account)))
+}}
+  <div class="col-auto">
+    {{fa-icon 'copy'}}
+  </div>
+  <div class="col pl-0">
+    {{#liquid-if mouseOver}}
+    {{account-address value=account truncate=true}}
+    {{else}}
+    {{account-address value=account truncate=false}}
+    {{/liquid-if}}
+  </div>
+{{/copy-button}}

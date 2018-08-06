@@ -1,13 +1,5 @@
-{{#if hideHistory}}
-  {{balance-overview wallet=model currency=currency onChangeCurrency=(route-action 'changeCurrency')}}
-{{/if}}
-{{#unless hideCarousel}}
-  {{wallet-overview wallet=model accounts=sortedAccounts hideHistory=hideHistory createAccount=(route-action 'createAccount') currentSlide=slide onChangeSlide=(route-action 'changeSlide')}}
-{{/unless}}
-{{liquid-outlet class="history"}}
+{{ log 'wallets/overview/template :: accounts' sortedAccounts}}
 
-{{#send-button wallet=model accounts=sortedAccounts isExpanded=isExpanded
-    onOpen=(action (queue (toggle 'isExpanded' this) (route-action 'openSend' model)))
-    onClose=(action (queue (toggle 'isExpanded' this) (route-action 'closeSend' model)))}}
-  {{liquid-outlet "sendOutlet" class="send-outlet"}}
-{{/send-button}}
+{{balance-overview wallet=model accounts=sortedAccounts currency=currency onChangeCurrency=(route-action 'changeCurrency')}}
+
+{{wallet-overview wallet=model accounts=sortedAccounts createAccount=(route-action 'createAccount') currentSlide=slide onChangeSlide=(route-action 'changeSlide')}}

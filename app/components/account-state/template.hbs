@@ -1,0 +1,13 @@
+{{log state}}
+{{#each options as |option|}}
+  {{#bs-button
+    type=(if (eq option state) "primary" "link")
+    value=option
+    onClick=(if (not-eq option state) (action changeAccountState) )
+  }}
+    {{#if (eq option state)}}
+      {{fa-icon 'check'}}
+    {{/if}}
+    {{option}}
+  {{/bs-button}}
+{{/each}}

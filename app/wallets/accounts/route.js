@@ -5,7 +5,7 @@ import { computed, action } from 'ember-decorators/object';
 
 export default Route.extend(KeyboardShortcuts, {
   renderTemplate() {
-    this.render('wallets/overview/accounts', {
+    this.render('wallets.accounts', {
       into: 'wallets',
     });
   },

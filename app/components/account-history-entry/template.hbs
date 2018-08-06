@@ -1,4 +1,4 @@
-<div class="col-lg-10 col-11 history-item send d-flex justify-content-around align-items-center">
+{{!-- <div class="col-lg-10 col-11 history-item send d-flex justify-content-around align-items-center">
   <div class="row w-100">
     <div class="col-12 col-sm-2 justify-content-center d-flex">
       {{#if (eq entry.type 'send')}}
@@ -8,6 +8,11 @@
       {{/if}}
     </div>
     <div class="col-12 col-sm-5 justify-content-center d-flex">
+      <p class="text-truncate">
+        {{account-address value=entry.account truncate=25}}
+      </p>
+    </div>
+    <div class="col-12 col-sm-5 justify-content-center d-flex">
       <p>
         <sup>
           <img src="{{root-url "images/logo.svg"}}" alt="{{t 'NANO'}}">
@@ -15,10 +20,29 @@
         {{format-amount entry.amount}}
       </p>
     </div>
-    <div class="col-12 col-sm-5 justify-content-center d-flex">
-      <p class="text-truncate">
-        {{account-address value=entry.account truncate=25}}
-      </p>
+  </div>
+</div> --}}
+<div class="card mb-2 w-100">
+  <div class="card-body">
+    <div class="row align-items-center">
+      <div class="col-auto">
+        {{#if (eq entry.type 'send')}}
+          {{fa-icon "paper-plane" size="lg" class="send" ariaLabel=(t 'send')}}
+        {{else}}
+          {{fa-icon "envelope-open" size="lg" class="receive" ariaLabel=(t 'receive')}}
+        {{/if}}
+      </div>
+      <div class="col mr-auto">
+        {{account-address value=entry.account}}
+      </div>
+      <div class="col-auto">
+        <p class="mb-0">
+          <sup>
+            <img src="{{root-url "images/logo.svg"}}" alt="{{t 'NANO'}}">
+          </sup>
+          {{format-amount entry.amount}}
+        </p>
+      </div>
     </div>
   </div>
 </div>

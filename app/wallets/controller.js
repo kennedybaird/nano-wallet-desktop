@@ -5,6 +5,9 @@ import { ContextBoundTasksMixin } from 'ember-lifeline';
 import { service } from 'ember-decorators/service';
 import { on } from 'ember-decorators/object/evented';
 
+import { computed, action } from 'ember-decorators/object';
+import { sort } from 'ember-decorators/object/computed';
+
 const WALLET_POLL_INTERVAL = 5 * 1000; // 5s
 
 export default Controller.extend(ContextBoundTasksMixin, {
@@ -12,6 +15,14 @@ export default Controller.extend(ContextBoundTasksMixin, {
   @service rpc: null,
 
   pollToken: null,
+
+  @sort('model.accounts', 'sortBy') sortedAccounts: null,
+
+  @computed
+  get sortBy() {
+    // Fallback to sorting by `id` for stable sort.
+    return ['modifiedTimestamp', 'id'];
+  },
 
   @on('init')
   setupPoller() {
@@ -46,5 +57,15 @@ export default Controller.extend(ContextBoundTasksMixin, {
     }));
 
     return this.get('store').push({ data });
+  },
+
+  @action
+  openSend() {
+    this.set('isSending', true);
+  },
+
+  @action
+  closeSend() {
+    this.set('isSending', false);
   },
 });

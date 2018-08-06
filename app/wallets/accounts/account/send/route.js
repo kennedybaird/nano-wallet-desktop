@@ -9,15 +9,15 @@ export default Route.extend({
   @service flashMessages: null,
 
   renderTemplate() {
-    this.render('wallets.overview.accounts.account.send', {
-      into: 'wallets.overview',
+    this.render('wallets.accounts.account.send', {
+      into: 'wallets',
       outlet: 'sendOutlet',
     });
   },
 
   model() {
     const wallet = this.modelFor('wallets');
-    const source = this.modelFor('wallets.overview.account');
+    const source = this.modelFor('wallets.accounts.account');
     return this.store.createRecord('block', {
       wallet,
       source,
@@ -27,7 +27,7 @@ export default Route.extend({
   },
 
   afterModel() {
-    this.controllerFor('wallets.overview').set('isExpanded', true);
+    this.controllerFor('wallets').set('isExpanded', true);
   },
 
   @action

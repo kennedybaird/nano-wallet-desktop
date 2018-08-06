@@ -4,9 +4,8 @@ import { action } from 'ember-decorators/object';
 
 export default Route.extend({
   renderTemplate() {
-    this.render('wallets/overview/settings', {
+    this.render('wallets.settings', {
       into: 'wallets',
-      outlet: 'walletSettings',
     });
   },
 

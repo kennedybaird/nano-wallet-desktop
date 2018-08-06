@@ -3,9 +3,18 @@
 <main role="main">
   {{notification-center}}
 
-  {{outlet}}
+  <div class="app-wrapper">  
+    {{liquid-outlet}}
 
-  {{outlet 'modal'}}
-
-  {{outlet 'walletSettings'}}
+    
+    {{log 'wallets/template :: sortedAccounts' sortedAccounts}}
+    {{send-button
+      wallet=model
+      sortedAccounts=sortedAccounts
+      isExpanded=isExpanded
+      isSending=isSending
+      onOpen=(action (queue (action 'openSend') (toggle 'isExpanded' this)))
+      onClose=(action (queue (action 'closeSend') (toggle 'isExpanded' this)))
+    }}
+  </div>
 </main>

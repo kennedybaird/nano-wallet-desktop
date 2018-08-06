@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import { get } from '@ember/object';
-import { tryInvoke } from '@ember/utils';
+import { isEmpty, tryInvoke } from '@ember/utils';
 
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import { action } from 'ember-decorators/object';
@@ -13,6 +13,9 @@ export default Route.extend(AuthenticatedRouteMixin, {
   @service rpc: null,
   @service flashMessages: null,
 
+  isSending: null,
+
+
   beforeModel(...args) {
     const electron = this.get('electron');
     const isElectron = get(electron, 'isElectron');
@@ -24,6 +27,15 @@ export default Route.extend(AuthenticatedRouteMixin, {
     }
 
     return this._super(...args);
+  },
+
+  async afterModel(wallet) {
+    const accounts = await get(wallet, 'accounts');
+    if (isEmpty(accounts)) {
+      await this.store.createRecord('account', { wallet }).save();
+    }
+
+    return wallet;
   },
 
   setupController(controller, model) {

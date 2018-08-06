@@ -1,7 +1,72 @@
-{{#if settings.label}}
-  <big>{{settings.label}}</big>
-  <br>
-  {{account-address value=account.id truncate=true}}
-{{else}}
-  {{account-address value=account.id truncate=truncate}}
-{{/if}}
+{{log 'account-label :: account ' account}}
+{{#let (changeset (hash label=settings.label state=settings.state) ChangeAccountSettingsValidations ) as |model|}}
+  {{log 'settings' settings}}
+  {{#liquid-if editingLabel}}
+      {{#bs-form model=model onSubmit=(action (queue (action 'updateLabel' model) ) account) as |form|}}
+        {{!-- <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <button type="submit" class="btn btn-outline-secondary">
+                {{fa-icon 'check' ariaLabel=(t 'confirm')}}
+              </button>
+            </div>
+            <input type='text' class="form-control form-control-lg" property="label" />
+          </div>
+        </div> --}}
+        <div class="form-inline mb-2">
+          {{#form.group class="w-100"}}
+            {{#bs-button type="secondary" class="mr-1 btn-outline-secondary" size="lg" buttonType='submit'}}
+              {{fa-icon 'check'}}
+            {{/bs-button}}
+            {{form.element size="lg" class="w-75" controlType="text" invisibleLabel=(t 'label') property="label"}}
+          {{/form.group}}
+        </div>
+        
+        {{!-- {{#form.element class="input-group" invisibleLabel=(t 'label') property="label" as |el|}}
+          {{account-label-edit id=el.id label=el.value}}
+        {{/form.element}} --}}
+        {{!-- <div class="input-group">
+
+          <div class="input-group-prepend">
+            <button type="submit" class="btn btn-outline-secondary">
+              {{fa-icon 'check' ariaLabel=(t 'confirm')}}
+            </button>
+          </div>
+          <input type='text' class="form-control form-control-lg" value={{settings.label}} aria-label={{settings.label}} >
+        </div> --}}
+      {{!-- {{form.element controlType='text' property="label"}} --}}
+      {{/bs-form}}
+  {{else}}
+    <div class="form-group">
+      <div class="row align-items-center" {{action 'editLabel' this}}>
+        <div class="col-auto">
+          <span ariaLabel={{t 'editLabel'}}>
+            {{fa-icon 'edit' size='lg'}}
+          </span>
+        </div>
+        <div class="col pl-0">
+          <h3 class='mb-0' ariaLabel={{t 'label'}}>{{settings.label}}</h3>
+        </div>
+      </div>
+    </div>
+  {{/liquid-if}}
+
+  {{account-card-hz-address account=account.id}}
+  {{!-- {{#copy-button
+    tagName='div'
+    class="row mb-4"
+    buttonType=null
+    clipboardText=account.id
+    success=(action 'copyAddress' (concat (slice 0 9 account.id) '...' (slice 59 64 account.id)))
+  }}
+    <div class="col-auto">
+      {{fa-icon 'copy'}}
+    </div>
+    <div class="col pl-0">
+        {{account-address value=account.id truncate=true}}
+    </div>
+  {{/copy-button}} --}}
+  <div>
+    {{account-state state=settings.state changeAccountState=(action 'changeAccountState')}}
+  </div>
+{{/let}}

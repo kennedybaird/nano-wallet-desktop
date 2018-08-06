@@ -7,7 +7,7 @@ import { computed, action } from 'ember-decorators/object';
 
 export default Route.extend(KeyboardShortcuts, {
   renderTemplate() {
-    this.render('wallets/overview/accounts/account/history', {
+    this.render('wallets/accounts/account/history', {
       into: 'wallets',
     });
   },
@@ -24,7 +24,7 @@ export default Route.extend(KeyboardShortcuts, {
 
   async model() {
     const wallet = this.modelFor('wallets');
-    const account = this.modelFor('wallets.overview.accounts.account');
+    const account = this.modelFor('wallets.accounts.account');
     const history = await this.store.query('history', {
       account: get(account, 'id'),
       count: 100,

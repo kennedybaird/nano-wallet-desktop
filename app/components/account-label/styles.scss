@@ -1,2 +1,7 @@
-& {
+.form-inline {
+  & .form-group {
+    & .form-control {
+      width: 100%!important
+    }
+  }
 }

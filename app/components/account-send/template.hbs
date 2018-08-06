@@ -1,7 +1,7 @@
 {{#let (changeset block SendValidations) as |model|}}
-  {{#bs-form model=model onSubmit=(action onSubmit) as |form|}}
+  {{#bs-form model=model as |form|}}
     {{#form.element controlType="power-select" label=(t 'wallets.accounts.send.source')
-        required=true options=accounts property='source' onChange=(action onChange) as |el|}}
+        required=true options=sortedAccounts property='source' as |el|}}
       {{#el.control searchField="id" searchPlaceholder=(t 'wallets.accounts.send.search') as |item|}}
         {{#let (or (get item.content 'content') item) as |content|}}
           <div>
@@ -11,7 +11,6 @@
         {{/let}}
       {{/el.control}}
     {{/form.element}}
-
     {{form.element controlType="text" label=(t 'wallets.accounts.send.destination') property="destination"
         autocomplete='on' minlength=64 maxlength=65 required=true pattern="^(xrb|nano)(_|-)[13](?![lv])[a-z1-9]{59}$"
         placeholder=(t 'wallets.accounts.send.placeholder')}}
